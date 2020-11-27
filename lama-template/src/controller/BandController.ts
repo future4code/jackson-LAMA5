@@ -4,6 +4,12 @@ import { BaseDatabase } from "../data/BaseDatabase";
 import { Band, BandInput } from "../model/Band";
 
 export class BandController {
+    static createBand(arg0: string, createBand: any) {
+        throw new Error("Method not implemented.");
+    }
+    static getBandById(arg0: string, getBandById: any) {
+        throw new Error("Method not implemented.");
+    }
     BandBusiness: any;
 
     public async createBand(
