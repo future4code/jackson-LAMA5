@@ -11,6 +11,7 @@ export class BandDatabase extends BaseDatabase{
         music_genre: string,
         responsible: string
       ): Promise<void> {
+
         try {
           await this.getConnection()
             .insert({
@@ -19,7 +20,8 @@ export class BandDatabase extends BaseDatabase{
               music_genre,
               responsible
             })
-            .into(BandDatabase.TABLE_NAME);
+            .into(BandDatabase.TABLE_NAME)
+
         } catch (error) {
           throw new Error(error.sqlMessage || error.message);
         }
@@ -29,17 +31,16 @@ export class BandDatabase extends BaseDatabase{
         id: string
     ): Promise<any> {
         
-        try {
+      try {
 
-            const band = await this.getConnection()
-            .select("*")
-            .from (BandDatabase.TABLE_NAME)
-            .where({ id })
-
-            return band[0][0]
-
-        } catch (error) {
-            throw new Error(error.sqlMessage || error.message);  
-        }
+          const band = await this.getConnection()
+          .select("*")
+          .from (BandDatabase.TABLE_NAME)
+          .where({ id })
+          return band[0][0]
+          
+      } catch (error) {
+          throw new Error(error.sqlMessage || error.message);  
+      }
     }
 }
