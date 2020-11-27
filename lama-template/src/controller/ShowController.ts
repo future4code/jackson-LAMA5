@@ -1,18 +1,20 @@
-import { BandBusiness } from "../business/BandBusiness";
+import { ShowBusiness } from "../business/ShowBusiness";
+import { Show, ShowInput } from "../model/Show";
 import { Request, Response } from "express";
 import { BaseDatabase } from "../data/BaseDatabase";
-import { Band, BandInput } from "../model/Band";
 
-export class BandController {
-    static createBand(arg0: string, createBand: any) {
+
+export class ShowController {
+    static createShow(arg0: string, createShow: any) {
         throw new Error("Method not implemented.");
     }
-    static getBandById(arg0: string, getBandById: any) {
+    static getByDay(arg0: string, getByDay: any) {
         throw new Error("Method not implemented.");
     }
-    BandBusiness: any;
 
-    public async createBand(
+    ShowBusiness: any
+
+    public async createShow(
         req: Request,
         res: Response
         ) {
@@ -21,17 +23,18 @@ export class BandController {
 
             const token: string = req.headers.authorization as string;
 
-            const input: BandInput = {
-                name: req.body.name,
-                music_genre: req.body.music_genre,
-                responsible: req.body.responsible
+            const input: ShowInput = {
+                week_day: req.body.week_day,
+                start_time: req.body.start_time,
+                end_time: req.body.end_time,
+                band_id: req.body.band_id
             }
 
-            const band = await BandBusiness.createBand(input, token);
+            const show = await ShowBusiness.createShow(input, token);
 
             res.status(200).send({
                 message: "Banda cadastrada com sucesso!",
-                band
+                show
             });
 
 
@@ -41,7 +44,7 @@ export class BandController {
         await BaseDatabase.destroyConnection();
     }
 
-    public async getBandById(
+    public async getShowByDate(
         req: Request, 
         res: Response
         ) {
@@ -52,10 +55,10 @@ export class BandController {
     
             const id: string  = req.params.id
     
-            const band: Band = await BandBusiness.getBandById(id, token);
+            const show: Show = await ShowBusiness.getShowByDate(id, token);
             
             res.status(200).send({
-                band
+                show
             });
 
         } catch (error) {
@@ -63,4 +66,5 @@ export class BandController {
         } 
         await BaseDatabase.destroyConnection()
     }
+
 }
