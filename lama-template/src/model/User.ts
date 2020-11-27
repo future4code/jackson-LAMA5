@@ -1,4 +1,5 @@
 export class User{
+
     constructor(
     private id: string,
     private name: string,
@@ -7,23 +8,23 @@ export class User{
     private role: UserRole
     ){}
 
-    getId(){
+    public getId(){
         return this.id;
     }
 
-    getName(){
+    public getName(){
         return this.name
     }
 
-    getEmail(){
+    public getEmail(){
         return this.email;
     }
 
-    getPassword(){
+    public getPassword(){
         return this.password;
     }
 
-    getRole(){
+    public getRole(){
         return this.role;
     }
 
@@ -59,8 +60,14 @@ export class User{
     }
 
     static toUserModel(user: any): User {
-        return new User(user.id, user.name, user.email, user.password, User.stringToUserRole(user.role));
-      }
+        return new User(
+            user.id, 
+            user.name, 
+            user.email, 
+            user.password, 
+            User.stringToUserRole(user.role)
+        );
+    }
 
 
 }
