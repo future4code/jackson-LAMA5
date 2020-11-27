@@ -4,7 +4,8 @@ import { UserBusiness } from "../business/UserBusiness";
 import { BaseDatabase } from "../data/BaseDatabase";
 
 export class UserController {
-    async signup(req: Request, res: Response) {
+
+    public async signup(req: Request, res: Response) {
         try {
 
             const input: UserInputDTO = {
@@ -26,7 +27,7 @@ export class UserController {
         await BaseDatabase.destroyConnection();
     }
 
-    async login(req: Request, res: Response) {
+    public async login(req: Request, res: Response) {
 
         try {
 

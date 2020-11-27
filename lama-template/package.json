@@ -5,11 +5,13 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "ts-node ./src/index.ts"
+    "start": "npm run build && node --inspect ./build/src/index.js",
+    "build": "clear && echo \"Transpiling files...\" && tsc && echo \"Done!\" ",
+    "sql-setup": "tsc && node ./build/migrations/MySqlSetup.js"
   },
   "keywords": [
     "api",
-    "labook"
+    "lama"
   ],
   "author": "João Alves",
   "license": "ISC",
